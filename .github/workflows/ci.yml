@@ -1,0 +1,53 @@
+name: System Order CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+
+jobs:
+  build-and-test:
+
+    name: Build and Unit Tests
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Baixa o código do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Instala o .NET 9
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # 3. Mostra a versão instalada
+      - name: Check .NET version
+        run: dotnet --version
+
+      # 4. Restaura os pacotes NuGet
+      - name: Restore dependencies
+        run: dotnet restore SystemOrder.sln
+
+      # 5. Compila toda a solution
+      - name: Build solution
+        run: dotnet build SystemOrder.sln --configuration Release --no-restore
+
+      # 6. Executa os testes unitários
+      - name: Run unit tests
+        run: >
+          dotnet test tests/SystemOrder.UnitTests/SystemOrder.UnitTests.csproj
+          --configuration Release
+          --no-build
+          --verbosity normal
