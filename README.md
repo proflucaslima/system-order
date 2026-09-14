@@ -1,45 +1,31 @@
-dotnet new sln -n SystemOrder
+mkdir stocksystem
 
+cd stocksystem
+
+dotnet new sln -n StockSystem
 
 mkdir src
-mkdir tests
 
-dotnet new classlib \
--n SystemOrder.Domain \
--o src/SystemOrder.Domain
+dotnet new classlib -n Estoque.Domain -o src/Estoque.Domain -f net9.0
 
+dotnet new classlib -n Estoque.Application -o src/Estoque.Application -f 
+net9.0
 
+dotnet new classlib -n Estoque.Infra -o src/Estoque.Infra -f net9.0
 
-dotnet new classlib \
--n SystemOrder.Application \
--o src/SystemOrder.Application
-
-
-dotnet new classlib \
--n SystemOrder.Infrastructure \
--o src/SystemOrder.Infrastructure
-
-dotnet new webapi \
--n SystemOrder.Api \
--o src/SystemOrder.Api \
---use-controllers
+dotnet new webapi -n Estoque.Api -o src/Estoque.Api -f net9.0 --use
+controller
 
 
-dotnet new xunit \
--n SystemOrder.UnitTests \
--o tests/SystemOrder.UnitTests
 
 
-dotnet sln add src/SystemOrder.Domain/SystemOrder.Domain.csproj
 
-dotnet sln add src/SystemOrder.Application/SystemOrder.Application.csproj
-
-dotnet sln add src/SystemOrder.Infrastructure/SystemOrder.Infrastructure.csproj
-
-dotnet sln add src/SystemOrder.Api/SystemOrder.Api.csproj
-
-dotnet sln add tests/SystemOrder.UnitTests/SystemOrder.UnitTests.csproj
-
-
-dotnet sln list
-
+dotnet sln add src/Estoque.Domain/Estoque.Domain.csproj
+dotnet sln add src/Estoque.Application/Estoque.Application.csproj
+dotnet sln add src/Estoque.Infra/Estoque.Infra.csproj
+dotnet sln add src/Estoque.Api/Estoque.Api.csproj
+dotnet add src/Estoque.Application reference src/Estoque.Domain
+dotnet add src/Estoque.Infra reference src/Estoque.Application
+dotnet add src/Estoque.Infra reference src/Estoque.Domain
+dotnet add src/Estoque.Api reference src/Estoque.Application
+dotnet add src/Estoque.Api reference src/Estoque.Infra
