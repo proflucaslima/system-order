@@ -9,7 +9,7 @@ Arquitetura: API -> Application -> Domain <- Infrastructure
 COMO USAR ESTE MATERIAL
 ============================================================
 
-Projeto ARQUITETURA 4 CAMADAS EM OUTRO REPO LINK https://github.com/proflucaslima/projeto-arquitetura-4-camadas
+Projeto USADO DE REFERENCIA PARA ARQUITETURA 4 CAMADAS COM IMPLEMENTAÇÃO DE AUTH/JWT/METRICS EM OUTRO REPO LINK https://github.com/proflucaslima/projeto-arquitetura-4-camadas
 
 Este arquivo foi escrito como um roteiro de aula e de implementação.
 A ideia NÃO é apenas copiar código. Em cada etapa você deve entender:
